@@ -1,8 +1,42 @@
 
+@import url(http://fonts.googleapis.com/css?family=Vollkorn:400,400italic,700,700italic&subset=latin);
+
 @import 'foghorn-markdown-styling';
 
-a {
-  color: #00B7FF;
+@border-color: rgba(0,0,0,0.3);
+
+* {
+  outline: none
+}
+
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+  /* Set your content font stack here: */
+  font-family: "Vollkorn", Palatino, Times;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+button {
+  cursor: pointer;
+  font-size: 20px;
+  background: white;
+  border: 1px solid @border-color;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.8);
+
+  &:active {
+    box-shadow: none;
+  }
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  border-color: @border-color;
+  border-radius: 3px;
+  padding: 5px;
 }
 
 .markdown-body {
@@ -11,4 +45,13 @@ a {
   max-width: 980px;
   margin: 0 auto;
   padding: 45px;
+}
+
+.wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+
+  h2 {
+    margin-top: 0;
+  }
 }
