@@ -1,39 +1,45 @@
-var express = require('express');
-var GitHubApi = require("github");
-var marked = require('marked');
 
-var router = express.Router();
+import fs from 'fs';
+import {Router} from 'express';
+import GitHubApi from "github";
+import marked from 'marked';
 
-var github = new GitHubApi({
+const router = Router();
+
+const github = new GitHubApi({
   version: "3.0.0",
 });
 
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.render('index', {});
 });
 
-router.get('/shield.svg', function(req, res, next) {
+router.get('/shield.svg', (req, res, next) => {
   res.redirect('https://img.shields.io/badge/usability_measures-taken-FF41A2.svg');
 });
 
-router.get('/repo/:user/:repo', function(req, res, next) {
-  var user = req.params.user;
-  var repo = req.params.repo;
+router.get('/create', (req, res, next) => {
+  fs.readFile(__dirname + '/template.md', (err, data) => {
+    if (err) throw err;
+    res.render('create', {template: data.toString()});
+  });
+});
+
+router.get('/repo/:user/:repo', (req, res, next) => {
+  const {user, repo} = req.params;
+  const path = 'README.md';
 
   github.repos.getContent({
-    user: user,
-    repo: repo,
-    path: 'README.md'
-  }, function (err, data) {
+    user, repo, path
+  }, (err, data) => {
     if (err) console.log(err);
 
     if (data) {
-      var buf = new Buffer(data.content, 'base64');
+      const buf = new Buffer(data.content, 'base64');
+      const content = marked(buf.toString('ascii'));
 
       res.render('repo', {
-        user: user,
-        repo: repo,
-        content: marked(buf.toString('ascii'))
+        user, repo, content
       });
     } else {
 
