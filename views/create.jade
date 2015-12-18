@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+  .wrapper
+    .pure-g
+      .pure-u-1-1
+        textarea(type='' name='')
+
+    a(href='#')
+      button Download markdown
+
+block scripts
+  script.
+    simplemde.value(!{JSON.stringify(template)});
