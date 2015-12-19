@@ -5,7 +5,7 @@ import favicon from 'serve-favicon';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import livereload from 'express-livereload)
+import livereload from 'express-livereload';
 
 import routes from './routes/index';
 import users from './routes/users';
@@ -60,7 +60,7 @@ app.use((err, req, res, next) => {
 });
 
 const config = {};
-config.exts = ['less'];
+config.exts = ['less', 'jade'];
 livereload(app, config);
 
 module.exports = app;
