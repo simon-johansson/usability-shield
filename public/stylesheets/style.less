@@ -28,6 +28,12 @@ button {
   &:active {
     box-shadow: none;
   }
+
+  &.download {
+    font-size: 24px;
+    padding: 5px 8px;
+    margin-right: 10px;
+  }
 }
 
 textarea {
@@ -47,10 +53,34 @@ textarea {
 }
 
 .wrapper {
-  max-width: 680px;
+  max-width: 800px;
   margin: 0 auto;
 
   h2 {
     margin-top: 0;
   }
+
+  .step {
+    margin-top: 80px;
+  }
+}
+
+h1 {
+  font-size: 70px;
+  line-height: 0px;
+}
+
+hr {
+  // border: 1px solid #bbb;
+}
+
+.shield {
+  margin-right: 10px;
+}
+
+input {
+  border-radius: 2px;
+  border: 1px solid #bbb;
+  padding: 5px 10px;
+  width: 70%;
 }
