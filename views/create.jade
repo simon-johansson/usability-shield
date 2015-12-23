@@ -24,18 +24,18 @@ block content
         h1 3.
       .pure-u-11-12
         h2 Pick a shield
-        img.shield(src='/shield/usability_measures-taken-FF41A2.svg')
-        img.shield(src='/shield/usability_aspects-considered-FF41A2.svg')
-        img.shield(src='/shield/UX-approved-FF41A2.svg')
-        img.shield(src='/shield/user_value-good-FF41A2.svg')
-        img.shield(src='/shield/user_testing-done-FF41A2.svg')
+        img.shield(src='https://img.shields.io/badge/usability_measures-taken-FF41A2.svg')
+        img.shield(src='https://img.shields.io/badge/usability_aspects-considered-FF41A2.svg')
+        img.shield(src='https://img.shields.io/badge/UX-approved-FF41A2.svg')
+        img.shield(src='https://img.shields.io/badge/user_value-good-FF41A2.svg')
+        img.shield(src='https://img.shields.io/badge/user_testing-done-FF41A2.svg')
 
     .pure-g.step
       .pure-u-1-12
         h1 4.
       .pure-u-11-12
-        h2 Paste the URL to the GitHub repo
-        input(type="text")
+        h2 Paste in the URL to your GitHub repo
+        input.repo(type="text")
 
     .pure-g.step
       .pure-u-1-12
@@ -43,12 +43,14 @@ block content
       .pure-u-11-12
         h2 Place this in your <code>README.md</code>
 
-        pre.
-          [![UX status][ux-image]][ux-url]
+        pre.readme.
+          ...
 
-          [ux-image]: http://l:3000/shield/usability_aspects-considered-FF41A2.sv
-          [ux-url]: http://l:3000/repo/simon-johansson/Quizif
-
+    .pure-g.step
+      .pure-u-1-12
+        h1 6.
+      .pure-u-11-12
+        h2 Your are all set! Remember to update your <code>ux.md</code> as you go along.
 
 
 
