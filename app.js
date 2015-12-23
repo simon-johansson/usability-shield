@@ -60,6 +60,7 @@ app.use((err, req, res, next) => {
 });
 
 const config = {};
+config.watchDir = process.cwd();
 config.exts = ['less', 'jade'];
 livereload(app, config);
 
