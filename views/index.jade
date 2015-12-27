@@ -2,9 +2,14 @@ extends layout
 
 block content
   .wrapper
-    h1 Usability shield
-    img(src='/shield.svg')
-    h2 Because user value and usability trumps dependency versions and code coverage
+    .splash-container
+      h1 UX shield
+      //- h2 Because dependency versions and code coverage are irrelevant without good usability and well thought out user value
+      h2 Show that you care about your users
 
-    a(href='/create')
-      button Create a usability shield
+      img.big-shield(src='https://img.shields.io/badge/usability_measures-taken-FF41A2.svg')
+
+      br
+
+      a(href='/create')
+        button Create your usability shield
