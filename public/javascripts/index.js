@@ -2,9 +2,11 @@
 var $downloadBtn = $('button.download');
 var $shields = $('img.shield');
 var $repoInput = $('input.repo');
-var user = "";
-var repo = "";
-var shield = "";
+var user = "[GITHUBUSER]";
+var repo = "[REPO]";
+var shield = "https://img.shields.io/badge/usability_measures-taken-FF41A2.svg";
+
+new Clipboard('.copy');
 
 $downloadBtn.on('click', function(ev) {
   ev.preventDefault();
@@ -15,6 +17,8 @@ $downloadBtn.on('click', function(ev) {
 $shields.on('click', function(ev) {
   ev.preventDefault();
   var $this = $(this);
+  $shields.removeClass('selected');
+  $(this).addClass('selected');
   shield = $this.attr('src');
   setReadmeText();
 });
@@ -31,9 +35,9 @@ function onRepoChange() {
   if (arr.length === 2) {
     repo = arr.pop();
     user = arr.pop();
-    $this.css('color', '#23C35D');
+    $this.siblings('.mega-octicon').css('display', 'inline');
   } else {
-    $this.css('color', 'black');
+    $this.siblings('.mega-octicon').css('display', 'none');
     repo = "";
     user = "";
   }
@@ -42,8 +46,9 @@ function onRepoChange() {
 
 function setReadmeText() {
   if (shield && user && repo) {
-    $('pre.readme').text("[![UX status][ux-image]][ux-url]\n\n[ux-image]: " + shield + "\n[ux-url]: http://l:3000/repo/" + user + '/' + repo);
-  } else {
-    $('pre.readme').text("");
+    $('pre#readme').text("[![UX status][ux-image]][ux-url]\n\n[ux-image]: " + shield + "\n[ux-url]: http://l:3000/repo/" + user + '/' + repo);
   }
+  // else {
+  //   $('pre#readme').text("");
+  // }
 }
