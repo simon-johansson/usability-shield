@@ -14,8 +14,9 @@ router.get('/', (req, res, next) => {
   res.render('index', {});
 });
 
-router.get('/shield.svg', (req, res, next) => {
-  res.redirect('https://img.shields.io/badge/usability_measures-taken-FF41A2.svg');
+router.get('/shield/:custom', (req, res, next) => {
+  const {custom} = req.params;
+  res.redirect(`https://img.shields.io/badge/${custom}`);
 });
 
 router.get('/create', (req, res, next) => {
@@ -27,24 +28,30 @@ router.get('/create', (req, res, next) => {
 
 router.get('/repo/:user/:repo', (req, res, next) => {
   const {user, repo} = req.params;
-  const path = 'README.md';
+  const path = 'UX.md';
+  const ref = 'ux';
 
-  github.repos.getContent({
-    user, repo, path
-  }, (err, data) => {
-    if (err) console.log(err);
+  const render = (data) => {
+    const buf = new Buffer(data.content, 'base64');
+    const content = marked(buf.toString('ascii'));
 
-    if (data) {
-      const buf = new Buffer(data.content, 'base64');
-      const content = marked(buf.toString('ascii'));
+    res.render('repo', {
+      user, repo, content
+    });
+  }
 
-      res.render('repo', {
-        user, repo, content
-      });
-    } else {
+  const getContent = (params, clb) => {
+    github.repos.getContent(params, (err, data) => {
+      if (err) console.log(err);
+      if (data) render(data);
+      else clb();
+    });
+  }
 
+  getContent({user, repo, path}, () => {
+    getContent({user, repo, path, ref}, () => {
       res.redirect('/');
-    }
+    });
   });
 });
 
