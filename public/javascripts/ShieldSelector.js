@@ -1,12 +1,4 @@
 
-var Shield = React.createClass({
-  render: function() {
-    const classNames = this.props.active ? 'shield selected' : 'shield';
-
-    return <img className={classNames} onClick={this.props.clickHandler} src={this.props.src}/>;
-  }
-});
-
 var ShieldSelector = React.createClass({
   getInitialState() {
     return {
@@ -29,25 +21,22 @@ var ShieldSelector = React.createClass({
     ];
 
     return (
-      <div className="pure-g step">
-        <div className="pure-u-1-12">
-          <h1>1.</h1>
-        </div>
-        <div className="pure-u-11-12">
-          <h2>Pick a shield</h2>
-          {srcs.map((src, i) => {
-            var active = src === this.state.activeShield ? true : false;
+      <div>
+        {
+          srcs.map((src, i) => {
+            let active = src === this.state.activeShield ? true : false;
+            let classNames = active ? 'shield selected' : 'shield';
+
             return (
-              <Shield
-                clickHandler={this._clickHandler}
+              <img
                 key={i}
-                parent={this}
+                className={classNames}
                 src={src}
-                active={active}
+                onClick={this._clickHandler}
               />
             );
-          })}
-        </div>
+          })
+        }
       </div>
     )
   }
