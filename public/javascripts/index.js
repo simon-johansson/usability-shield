@@ -1,54 +1,124 @@
 
-var $downloadBtn = $('button.download');
-var $shields = $('img.shield');
-var $repoInput = $('input.repo');
-var user = "[GITHUBUSER]";
-var repo = "[REPO]";
-var shield = "https://img.shields.io/badge/usability_measures-taken-FF41A2.svg";
+import ShieldSelector from './ShieldSelector'
+import MarkdownEditor from './MarkdownEditor'
+import DownloadMarkdown from './DownloadMarkdown'
+import RepoValidator from './RepoValidator'
+import PlaceInReadme from './PlaceInReadme'
 
-new Clipboard('.copy');
+var ShieldCreationSteps = React.createClass({
+  getInitialState() {
+    return {
+      url: 'http://usability-shield.io',
+      user: '[GITHUBUSER]',
+      repo: '[REPO]',
+      shield: 'https://img.shields.io/badge/usability_measures-taken-FF41A2.svg',
+    };
+  },
 
-$downloadBtn.on('click', function(ev) {
-  ev.preventDefault();
-  var blob = new Blob([simplemde.value()], {type: "text/markdown;charset=utf-8"});
-  saveAs(blob, "usability.md");
+  _setShield(shield) {
+    this.setState({ shield });
+  },
+
+  _setRepo(user = '[GITHUBUSER]', repo = '[REPO]') {
+    this.setState({ user, repo });
+  },
+
+  render: function() {
+    const stepClass = 'pure-g step';
+    const narrowColClass = 'pure-u-1-12';
+    const wideColClass = 'pure-u-11-12';
+
+    const readmeText = [
+      `[![Usability status][usability-image]][usability-url]\n\n`,
+
+      `[usability-image]: ${this.state.shield}\n`,
+      `[usability-url]: ${this.state.url}/repo/${this.state.user}/${this.state.repo}`
+    ].join('');
+
+    return (
+      <div className="wrapper">
+
+        <div className={stepClass}>
+          <div className={narrowColClass}>
+            <h1>1.</h1>
+          </div>
+          <div className={wideColClass}>
+            <h2>Pick a shield</h2>
+
+            <ShieldSelector
+              onShieldSelected={this._setShield}
+              shield={this.state.shield}
+            />
+          </div>
+        </div>
+
+        <div className={stepClass}>
+          <div className={narrowColClass}>
+            <h1>2.</h1>
+          </div>
+          <div className={wideColClass}>
+            <h2>Paste in the URL to your GitHub repo</h2>
+
+            <RepoValidator
+              onRepoSelected={this._setRepo}
+              user={this.state.user}
+              repo={this.state.repo}
+            />
+          </div>
+        </div>
+
+        <div className={stepClass}>
+          <div className={narrowColClass}>
+            <h1>3.</h1>
+          </div>
+          <div className={wideColClass}>
+            <h2> Place this in your <code>README.md</code></h2>
+
+            <PlaceInReadme
+              text={readmeText}
+            />
+          </div>
+        </div>
+
+        <div className={stepClass}>
+          <div className={narrowColClass}>
+            <h1>4.</h1>
+          </div>
+          <div className={wideColClass}>
+            <h2>Describe what measures you have taken in order to achieve good usability for your users. No pressure, you can change this later</h2>
+
+            <MarkdownEditor />
+          </div>
+        </div>
+
+        <div className={stepClass}>
+          <div className={narrowColClass}>
+            <h1>5.</h1>
+          </div>
+          <div className={wideColClass}>
+            <h2 className='increased-lineheight'>
+              <DownloadMarkdown />
+              and place it in the root of your repo <br/>
+              <span className='small-text'>(in either your <code>master</code> branch or a branch named <code>usability</code>)</span>
+            </h2>
+          </div>
+        </div>
+
+        <div className={stepClass}>
+          <div className={narrowColClass}>
+            <h1>6.</h1>
+          </div>
+          <div className={wideColClass}>
+            <h2>Your are all set! Remember to update your <code>usability.md</code> as your project evolves</h2>
+          </div>
+        </div>
+      </div>
+    );
+  }
 });
 
-$shields.on('click', function(ev) {
-  ev.preventDefault();
-  var $this = $(this);
-  $shields.removeClass('selected');
-  $(this).addClass('selected');
-  shield = $this.attr('src');
-  setReadmeText();
-});
+ReactDOM.render(
+  <ShieldCreationSteps />,
+  document.getElementById('creation-steps')
+);
 
-$repoInput.on('change', onRepoChange);
-$repoInput.on('keyup', onRepoChange);
-
-function onRepoChange() {
-  var $this = $(this);
-  var val = $this.val();
-  var arr = val.split('https://github.com/')[1].split('/');
-  arr = arr.filter(function(n){ return n != false });
-  console.log(arr);
-  if (arr.length === 2) {
-    repo = arr.pop();
-    user = arr.pop();
-    $this.siblings('.mega-octicon').css('display', 'inline');
-  } else {
-    $this.siblings('.mega-octicon').css('display', 'none');
-    repo = "";
-    user = "";
-  }
-  setReadmeText();
-}
-
-function setReadmeText() {
-  if (shield && user && repo) {
-    $('pre#readme').text("[![UX status][ux-image]][ux-url]\n\n[ux-image]: " + shield + "\n[ux-url]: http://l:3000/repo/" + user + '/' + repo);
-  }
-  // else {
-  //   $('pre#readme').text("");
-  // }
-}
