@@ -2,16 +2,20 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet' href='http://yui.yahooapis.com/pure/0.6.0/pure-min.css')
+    link(rel='stylesheet' href='/javascripts/vendor/pure/pure-min.css')
+    link(rel='stylesheet' href="/javascripts/vendor/simplemde/dist/simplemde.min.css")
     link(rel='stylesheet' href='/stylesheets/style.css')
-    link(rel='stylesheet' href="http://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css")
   body
     block content
 
-    script(src='http://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js')
+    //- footer
+
+    script(src='/javascripts/vendor/simplemde/dist/simplemde.min.js')
     script(src='/javascripts/vendor/FileSaver/FileSaver.js')
     script(src='/javascripts/vendor/jquery/dist/jquery.js')
     script(src='/javascripts/vendor/clipboard/dist/clipboard.js')
-    script(src='/javascripts/index.js')
+    script(src='/javascripts/vendor/react/react.js')
+    script(src='/javascripts/vendor/react/react-dom.js')
+    script(src='/js/bundle.js')
     != LRScript
     block scripts
