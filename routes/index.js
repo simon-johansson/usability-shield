@@ -22,14 +22,16 @@ router.get('/shield/:custom', (req, res, next) => {
 router.get('/create', (req, res, next) => {
   fs.readFile(__dirname + '/template.md', (err, data) => {
     if (err) throw err;
-    res.render('create', {template: data.toString()});
+    res.render('create', {
+      template: data.toString(),
+    });
   });
 });
 
 router.get('/repo/:user/:repo', (req, res, next) => {
   const {user, repo} = req.params;
-  const path = 'UX.md';
-  const ref = 'ux';
+  const path = 'usability.md';
+  const ref = 'usability';
 
   const render = (data) => {
     const buf = new Buffer(data.content, 'base64');
