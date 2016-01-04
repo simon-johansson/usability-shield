@@ -6,9 +6,10 @@ import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import livereload from 'express-livereload';
+import browserify from 'browserify-middleware';
+import babelify from 'babelify';
 
 import routes from './routes/index';
-import users from './routes/users';
 
 const app = express();
 
@@ -25,8 +26,15 @@ app.use(cookieParser());
 app.use(require('less-middleware')(join(__dirname, 'public')));
 app.use(express.static(join(__dirname, 'public')));
 
+browserify.settings({
+  transform: [[babelify, {presets: ['es2015', 'stage-0', 'react']}]],
+});
+
+app.get('/js/bundle.js', browserify('./public/javascripts/index.js', {
+  debug: true,
+}));
+
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -59,9 +67,11 @@ app.use((err, req, res, next) => {
   });
 });
 
-const config = {};
-config.watchDir = process.cwd();
-config.exts = ['less', 'jade'];
-livereload(app, config);
+if (process.env.NODE_ENV === 'development') {
+  const config = {};
+  config.watchDir = process.cwd() + '/public';
+  config.exts = ['less', 'jade'];
+  livereload(app, config);
+}
 
 module.exports = app;
