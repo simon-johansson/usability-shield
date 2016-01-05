@@ -15,9 +15,8 @@ var ShieldSelector = React.createClass({
     const srcs = [
       'https://img.shields.io/badge/usability_measures-taken-FF41A2.svg',
       'https://img.shields.io/badge/usability_aspects-considered-FF41A2.svg',
-      'https://img.shields.io/badge/UX-approved-FF41A2.svg',
-      'https://img.shields.io/badge/user_value-good-FF41A2.svg',
-      'https://img.shields.io/badge/user_testing-done-FF41A2.svg',
+      'https://img.shields.io/badge/usability_testing-done-FF41A2.svg',
+      'https://img.shields.io/badge/user_feedback-collected-FF41A2.svg',
     ];
 
     return (
