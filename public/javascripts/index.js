@@ -36,7 +36,7 @@ var ShieldCreationSteps = React.createClass({
     ].join('');
 
     return (
-      <div className="wrapper">
+      <div>
 
         <div className={stepClass}>
           <div className={narrowColClass}>
@@ -109,7 +109,7 @@ var ShieldCreationSteps = React.createClass({
             <h1>6.</h1>
           </div>
           <div className={wideColClass}>
-            <h2>Your are all set! Remember to update your <code>usability.md</code> as your project evolves</h2>
+            <h2>Your are all set! Remember to update your <code>usability.md</code> as your project evolves. And...</h2>
           </div>
         </div>
       </div>
