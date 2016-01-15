@@ -1,0 +1,58 @@
+.transition(@transition: all linear .5s) {
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -o-transition: @transition;
+  -ms-transition: @transition;
+  transition: @transition;
+}
+
+.transform(@transform: inherit) {
+  -webkit-transform: @transform;
+  -moz-transform: @transform;
+  -o-transform: @transform;
+  -ms-transform: @transform;
+  transform: @transform;
+}
+
+.transform-origin(@transform-origin: left top) {
+  -webkit-transform-origin: @transform-origin;
+  -moz-transform-origin: @transform-origin;
+  -o-transform-origin: @transform-origin;
+  -ms-transform-origin: @transform-origin;
+  transform-origin: @transform-origin;
+}
+
+.animation(@parameters) {
+  -webkit-animation: @parameters;
+  -moz-animation: @parameters;
+  -o-animation: @parameters;
+  -ms-animation: @parameters;
+  animation: @parameters;
+}
+
+.loveKeyframes(@multiply: 1, @direction: 1) {
+  0% {
+    font-size: 0;
+    opacity: 0;
+    padding-left: 5px / @multiply;
+  }
+  25% {
+    font-size: 8px * @multiply;
+    opacity: 1;
+    padding-left: (5px + 5px * @direction) / @multiply;
+  }
+  50% {
+    padding-left: (5px - 5px * @direction) / @multiply;
+  }
+  75% {
+    font-size: 18px * @multiply;
+    opacity: 1;
+    padding-left: (5px + 5px * @direction) / @multiply;
+  }
+  100% {
+    font-size: 28px * @multiply;
+    opacity: 0;
+    line-height: 28px * @multiply;
+    padding-left: 5px / @multiply;
+  }
+}
