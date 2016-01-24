@@ -15,6 +15,14 @@ var ShieldCreationSteps = React.createClass({
     };
   },
 
+  componentDidMount() {
+    this._show();
+  },
+
+  _show() {
+    ReactDOM.findDOMNode(this).classList.add('show');
+  },
+
   _setShield(shield) {
     this.setState({ shield });
   },
