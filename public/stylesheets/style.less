@@ -20,12 +20,24 @@ html, button, input, select, textarea,
   line-height: 1.4;
 }
 
+html:not(iframe) {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body:not(iframe) {
+  margin: 0 0 70px;
+}
+
 .splash-container {
   text-align: center;
-  margin-top: 200px;
+  margin-top: 180px;
 
   .big-shield {
-    width: 200px;
+    width: 350px;
+    margin-bottom: 50px;
   }
 
   h3 {
@@ -35,6 +47,13 @@ html, button, input, select, textarea,
     width: 350px;
     display: block;
     margin: auto;
+
+    &.big {
+      font-size: 28px;
+      width: 500px;
+      padding-bottom: 50px;
+      border-bottom: 2px solid #eee;
+    }
   }
 
   button {
@@ -44,7 +63,8 @@ html, button, input, select, textarea,
 
 pre,
 code {
-  background: rgb(250, 250, 250);
+  // background: rgb(250, 250, 250);
+  background: #fbf9ff;
   border: 1px solid #eee;
   padding: 5px;
 }
@@ -54,7 +74,7 @@ button {
   background: white;
   border: 1px solid @border-color;
   border-radius: 5px;
-  box-shadow: 1px 1px 0px rgba(0,0,0,0.8);
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.4);
   font-size: 24px;
   padding: 5px 8px;
   transition: color 0.2s;
@@ -112,7 +132,7 @@ textarea {
 .wrapper {
   max-width: 900px;
   min-width: 600px;
-  margin: 0 auto;
+  margin: 140px auto 80px;
 
   h2 {
     margin-top: 0;
@@ -140,7 +160,7 @@ h1 {
   transition: all 0.6s;
 
   &.selected {
-    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.8);
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.4);
     transform: scale(1.05);
   }
 }
@@ -186,12 +206,20 @@ footer {
   border-top: 1px solid #ececec;
   background: #fbf9ff;
   text-align: center;
-  height: 145px;
+  height: 80px;
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   margin: 0;
+
+  font-size: italic;
+  line-height: 80px;
+  color: #999;
+
+  a {
+    color: #999;
+  }
 }
 
 .octocat-icon {
@@ -208,7 +236,61 @@ footer {
   }
 
   .twitter-share-button {
-    margin-left: 10px;
+    // margin-left: 10px;
   }
 }
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #bbb;
+  padding: 10px;
+  width: 100%;
+  font-size: 15px;
+  box-shadow: 1px 1px 30px rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.95);
+  z-index: 999;
+
+  img {
+    width: 120px;
+    margin: 0;
+    vertical-align: middle;
+  }
+
+  .github-share-button,
+  .mega-octicon {
+    vertical-align: middle;
+    float: right;
+    margin-right: 20px;
+    font-size: 26px;
+  }
+
+  i {
+    color: #999;
+    margin-left: 10px;
+    vertical-align: sub;
+  }
+}
+
+body > .octicon-mark-github {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 26px;
+}
+
+#creation-steps {
+  min-height: 1000px;
+
+  & > div {
+    opacity: 0;
+    -webkit-transition: all 1s;
+    -webkit-transition-delay: 0.5s;
+
+    &.show {
+      opacity: 1;
+    }
+  }
+}
