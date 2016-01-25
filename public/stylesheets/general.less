@@ -1,0 +1,47 @@
+
+* {
+  outline: none
+}
+
+html,
+body {
+  padding: 1em;
+  margin: auto;
+  background: @smokey-white;
+}
+
+html:not(iframe) {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body:not(iframe) {
+  margin: 0 0 70px;
+}
+
+.wrapper {
+  max-width: 900px;
+  min-width: 600px;
+  margin: 140px auto 80px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  .step {
+    margin-top: 80px;
+
+    h1 {
+      color: #DCDCDC;
+    }
+  }
+}
+
+pre,
+code {
+  background: @light-purple;
+  border: 1px solid @border-color-secondary;
+  padding: 5px;
+}
