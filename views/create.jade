@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-  include ./header.jade
+  include ./includes/header.jade
 
   .wrapper
     #creation-steps
@@ -36,10 +36,3 @@ block content
             style="border: 0; overflow: hidden;"
             allowtransparency="true"
             scrolling="no")
-
-  include ./footer.jade
-
-block scripts
-  script.
-    //- var simplemde = new SimpleMDE();
-    //- simplemde.value(!{JSON.stringify(template)});
