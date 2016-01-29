@@ -1,7 +1,11 @@
 extends layout
 
 block content
-  h1 #{user} / #{repo}
+  include ./includes/header.jade
+
+  .wrapper
+    h2 #{user} / #{repo}
 
   .markdown-body
+
     !{content}
