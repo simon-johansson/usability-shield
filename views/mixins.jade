@@ -1,0 +1,44 @@
+
+
+mixin header
+  header
+    a(href="/")
+      img(src='https://img.shields.io/badge/usability-shield-FF41A2.svg')
+
+    i.slogan When usability measures have been taken
+
+    a(href="https://github.com/simon-johansson/usability-shield")
+      span.mega-octicon.octicon-mark-github
+
+    if block
+      block
+
+mixin headerCreateButton
+  a(href="/create")
+    button.header-button Create a usability shield
+
+mixin hearts
+  #hearts
+    .heart1 &hearts;
+    .heart2 &hearts;
+    .heart3 &hearts;
+    .heart4 &hearts;
+    .heart5 &hearts;
+
+mixin githubStarButton
+  iframe.github-star-button(
+    src="https://ghbtns.com/github-btn.html?user=simon-johansson&repo=usability-shield&type=star&count=true&size=large"
+    frameborder="0"
+    scrolling="0"
+    width="140px"
+    height="30px")
+
+mixin tweetButton
+  iframe.tweet-button(
+    src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev&related=twitterapi%2Ctwitter&text=custom%20share%20text&hashtags=example%2Cdemo"
+    width="78"
+    height="28"
+    title="Twitter Tweet Button"
+    style="border: 0; overflow: hidden;"
+    allowtransparency="true"
+    scrolling="no")

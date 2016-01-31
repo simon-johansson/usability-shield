@@ -1,11 +1,11 @@
+include ./mixins.jade
+
 extends layout
 
 block content
-  include ./includes/header.jade
-
-  .wrapper
-    h2 #{user} / #{repo}
+  +header
+    +headerCreateButton
 
   .markdown-body
-
+    h1 #{user} / #{repo}
     !{content}

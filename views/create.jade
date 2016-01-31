@@ -1,8 +1,10 @@
+include ./mixins.jade
+
 extends layout
 
 block content
 
-  include ./includes/header.jade
+  +header
 
   .wrapper
     #creation-steps
@@ -10,29 +12,11 @@ block content
     .pure-g
       .pure-u-1-12
       .pure-u-11-12
-        .thank-you
+        .sharing
+          +hearts
 
-          div#hearts
-            .heart1 &hearts;
-            .heart2 &hearts;
-            .heart3 &hearts;
-            .heart4 &hearts;
-            .heart5 &hearts;
+          h2 <span class="thank-you">Thank you!</span> For striving to make useful and usable software. Please help spread the cause:
 
-          h2 <span>Thank you!</span> For striving to make useful and usable software. Please help spread the cause:
+          +githubStarButton
+          +tweetButton
 
-          iframe.github-share-button(
-            src="https://ghbtns.com/github-btn.html?user=simon-johansson&repo=usability-shield&type=star&count=true&size=large"
-            frameborder="0"
-            scrolling="0"
-            width="140px"
-            height="30px")
-
-          iframe.twitter-share-button(
-            src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev&related=twitterapi%2Ctwitter&text=custom%20share%20text&hashtags=example%2Cdemo"
-            width="78"
-            height="28"
-            title="Twitter Tweet Button"
-            style="border: 0; overflow: hidden;"
-            allowtransparency="true"
-            scrolling="no")
