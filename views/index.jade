@@ -1,10 +1,12 @@
 extends layout
 
 block content
+  include ./includes/doorbell.jade
   //- a.octocat-icon.octocat-md.octocat-shy-t.octocat-tr(href="#")
-  span.mega-octicon.octicon-mark-github
+  a.github-link(href="https://github.com/simon-johansson/usability-shield")
+    span.mega-octicon.octicon-mark-github
 
-  .wrapper
+  .flexbox-center
     .splash-container
       //- h1 Usability shield
       img.splash-shield(src='https://img.shields.io/badge/usability-shield-FF41A2.svg')
