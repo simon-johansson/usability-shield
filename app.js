@@ -9,7 +9,7 @@ import livereload from 'express-livereload';
 import browserify from 'browserify-middleware';
 import babelify from 'babelify';
 
-import routes from './routes/index';
+import * as routes from './routes';
 
 const app = express();
 
@@ -20,9 +20,9 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(cookieParser());
 app.use(require('less-middleware')(join(__dirname, 'public')));
 app.use(express.static(join(__dirname, 'public')));
 
@@ -34,7 +34,11 @@ app.get('/js/bundle.js', browserify('./public/javascripts/index.js', {
   debug: true,
 }));
 
-app.use('/', routes);
+app.use('/', routes.splash);
+app.use('/img', routes.img);
+app.use('/create', routes.create);
+app.use('/repo', routes.repo);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
