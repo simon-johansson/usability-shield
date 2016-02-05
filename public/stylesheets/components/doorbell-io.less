@@ -29,23 +29,29 @@
   transition: color 0.2s;
   font-size: 15px;
   padding: 2px 8px;
-  color: @font-default-color;
+  color: @primary-font-color;
 }
 
 #doorbell {
-  input {
+  width: 500px;
+  margin-left: -250px;
+
+  #doorbell-form {
+    padding: 10px 20px 10px;
+  }
+
+  #doorbell-feedback-label {
     font-size: 16px !important;
   }
 
-  textarea {
+  #doorbell-feedback {
     font-size: 16px !important;
+    margin: 10px 0 5px;
+    border-radius: 4px;
+    border: 1px solid #bbb;
   }
+
   #doorbell-powered-by {
-    display: none;
+    margin-top: 10px;
   }
 }
-
-[], MP 1, 235, 45
-[], MP 2, 256, 48
-[], MP 3, 201, 30
-[], MP 4, 299, 55
