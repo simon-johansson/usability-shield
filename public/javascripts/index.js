@@ -8,10 +8,10 @@ import PlaceInReadme from './PlaceInReadme'
 var ShieldCreationSteps = React.createClass({
   getInitialState() {
     return {
-      url: 'http://usability-shield.io',
+      url: 'http://usability-shield.com',
       user: '[GITHUBUSER]',
       repo: '[REPO]',
-      shield: 'https://img.shields.io/badge/usability_measures-taken-FF41A2.svg',
+      shield: 'https://img.shields.com/badge/usability_measures-taken-FF41A2.svg',
     };
   },
 
@@ -33,6 +33,7 @@ var ShieldCreationSteps = React.createClass({
 
   render: function() {
     const stepClass = 'pure-g step';
+    const stepNumberClass = 'step-number';
     const narrowColClass = 'pure-u-1-12';
     const wideColClass = 'pure-u-11-12';
 
@@ -48,10 +49,10 @@ var ShieldCreationSteps = React.createClass({
 
         <div className={stepClass}>
           <div className={narrowColClass}>
-            <h1>1.</h1>
+            <h1 className={stepNumberClass}>1.</h1>
           </div>
           <div className={wideColClass}>
-            <h2>Pick a shield</h2>
+            <p>Pick a shield</p>
 
             <ShieldSelector
               onShieldSelected={this._setShield}
@@ -62,10 +63,10 @@ var ShieldCreationSteps = React.createClass({
 
         <div className={stepClass}>
           <div className={narrowColClass}>
-            <h1>2.</h1>
+            <span className={stepNumberClass}>2.</span>
           </div>
           <div className={wideColClass}>
-            <h2>Paste in the URL to your GitHub repo</h2>
+            <p>Paste in the URL to your GitHub repo</p>
 
             <RepoValidator
               onRepoSelected={this._setRepo}
@@ -77,10 +78,10 @@ var ShieldCreationSteps = React.createClass({
 
         <div className={stepClass}>
           <div className={narrowColClass}>
-            <h1>3.</h1>
+            <span className={stepNumberClass}>3.</span>
           </div>
           <div className={wideColClass}>
-            <h2> Place this in your <code>README.md</code></h2>
+            <p> Place this in your <code>README.md</code></p>
 
             <PlaceInReadme
               text={readmeText}
@@ -90,10 +91,10 @@ var ShieldCreationSteps = React.createClass({
 
         <div className={stepClass}>
           <div className={narrowColClass}>
-            <h1>4.</h1>
+            <span className={stepNumberClass}>4.</span>
           </div>
           <div className={wideColClass}>
-            <h2>Describe what measures you have taken in order to achieve good usability for your users. No pressure, you can change this later</h2>
+            <p>Describe what measures you have taken in order to achieve good usability for your users. No pressure, you can change this later</p>
 
             <MarkdownEditor />
           </div>
@@ -101,23 +102,23 @@ var ShieldCreationSteps = React.createClass({
 
         <div className={stepClass}>
           <div className={narrowColClass}>
-            <h1>5.</h1>
+            <span className={stepNumberClass}>5.</span>
           </div>
           <div className={wideColClass}>
-            <h2 className='increased-lineheight'>
+            <p className='increased-lineheight'>
               <DownloadMarkdown />
               and place it in the root of your repo <br/>
               <span className='small-text'>(in either your <code>master</code> branch or a branch named <code>usability</code>)</span>
-            </h2>
+            </p>
           </div>
         </div>
 
         <div className={stepClass}>
           <div className={narrowColClass}>
-            <h1>6.</h1>
+            <span className={stepNumberClass}>6.</span>
           </div>
           <div className={wideColClass}>
-            <h2>Your are all set! Remember to update your <code>usability.md</code> as your project evolves. And...</h2>
+            <p>Your are all set! Remember to update your <code>usability.md</code> as your project evolves. And...</p>
           </div>
         </div>
       </div>
