@@ -35,7 +35,7 @@ var RepoValidator = React.createClass({
     };
 
     return (
-      <form>
+      <form className="repo-validator">
         <input
           onChange={this.onChange}
           className="repo"
