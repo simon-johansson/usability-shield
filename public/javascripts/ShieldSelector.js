@@ -12,17 +12,11 @@ var ShieldSelector = React.createClass({
   },
 
   render: function() {
-    // const srcs = [
-    //   'https://img.shields.io/badge/usability_measures-taken-FF41A2.svg',
-    //   'https://img.shields.io/badge/usability_aspects-considered-FF41A2.svg',
-    //   'https://img.shields.io/badge/usability_testing-done-FF41A2.svg',
-    //   'https://img.shields.io/badge/user_feedback-collected-FF41A2.svg',
-    // ];
     const srcs = [
-      'http://l:3000/img/usability_measures-taken',
-      'http://l:3000/img/usability_aspects-considered',
-      'http://l:3000/img/usability_testing-done',
-      'http://l:3000/img/user_feedback-collected',
+      'http://usability-shield.com/img/usability_measures-taken',
+      'http://usability-shield.com/img/usability_aspects-considered',
+      'http://usability-shield.com/img/usability_testing-done',
+      'http://usability-shield.com/img/user_feedback-collected',
     ];
 
     return (

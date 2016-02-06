@@ -11,7 +11,7 @@ var ShieldCreationSteps = React.createClass({
       url: 'http://usability-shield.com',
       user: '[GITHUBUSER]',
       repo: '[REPO]',
-      shield: 'https://img.shields.com/badge/usability_measures-taken-FF41A2.svg',
+      shield: 'http://usability-shield.com/img/usability_measures-taken',
     };
   },
 

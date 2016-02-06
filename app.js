@@ -8,6 +8,7 @@ import bodyParser from 'body-parser';
 import livereload from 'express-livereload';
 import browserify from 'browserify-middleware';
 import babelify from 'babelify';
+import less from 'less-file';
 
 import * as routes from './routes';
 
@@ -23,8 +24,9 @@ app.use(logger('dev'));
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(cookieParser());
-app.use(require('less-middleware')(join(__dirname, 'public')));
+
 app.use(express.static(join(__dirname, 'public')));
+app.use('/style', less(join(__dirname, 'public', 'stylesheets', 'style.less')));
 
 browserify.settings({
   transform: [[babelify, {presets: ['es2015', 'stage-0', 'react']}]],
