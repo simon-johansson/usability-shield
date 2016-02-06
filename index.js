@@ -1,6 +1,7 @@
 
 require('babel-register')({
-  presets: ['es2015', 'stage-0']
+  presets: ['es2015', 'stage-0'],
+  ignore: false
 });
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
