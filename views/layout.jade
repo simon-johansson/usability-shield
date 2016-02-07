@@ -1,16 +1,21 @@
 doctype html
 html
   head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+
     title= title
+    meta(name='description', content='Are you performing measures in order to achieve good usability in your software? Then let it be known by decorating your Github README with a usability-shield.')
+
     link(rel='stylesheet' href='/javascripts/vendor/pure/pure-min.css')
     link(rel='stylesheet' href="/javascripts/vendor/simplemde/dist/simplemde.min.css")
-    //- link(rel='stylesheet' href='/stylesheets/style.css')
     link(rel='stylesheet' href='/style/bundle.css')
 
   body
     block content
 
     include ./includes/footer.jade
+    include ./includes/ga.jade
 
     script(src='/javascripts/vendor/simplemde/dist/simplemde.min.js')
     script(src='/javascripts/vendor/FileSaver/FileSaver.js')
