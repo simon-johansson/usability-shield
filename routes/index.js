@@ -1,5 +1,15 @@
 
-export {default as splash} from './splash'
-export {default as img} from './img'
-export {default as create} from './create'
-export {default as repo} from './repo'
+import {Router} from 'express';
+const router = Router();
+
+import splash from './splash'
+import create from './create'
+import repo from './repo'
+import img from './img'
+
+router.get('/', splash);
+router.get('/create', create);
+router.get('/repo/:user/:repo', repo);
+router.get('/img/:customText', img);
+
+export default router;

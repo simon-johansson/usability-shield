@@ -1,9 +1,6 @@
 
-import {Router} from 'express';
-const router = Router();
-
-router.get('/', (req, res, next) => {
-  res.render('index', {});
-});
-
-export default router;
+export default (req, res, next) => {
+  res.render('index', {
+    title: 'usability-shield - When usability measures have been taken'
+  });
+};

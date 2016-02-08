@@ -10,7 +10,7 @@ import browserify from 'browserify-middleware';
 import babelify from 'babelify';
 import less from 'less-file';
 
-import * as routes from './routes';
+import routes from './routes';
 
 const app = express();
 
@@ -21,9 +21,6 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 app.use(favicon(join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser());
 
 app.use(express.static(join(__dirname, 'public')));
 app.use('/style', less(join(__dirname, 'public', 'stylesheets', 'style.less')));
@@ -36,11 +33,7 @@ app.get('/js/bundle.js', browserify('./public/javascripts/index.js', {
   debug: true,
 }));
 
-app.use('/', routes.splash);
-app.use('/img', routes.img);
-app.use('/create', routes.create);
-app.use('/repo', routes.repo);
-
+app.use(routes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -49,28 +42,16 @@ app.use((req, res, next) => {
   next(err);
 });
 
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use((err, req, res, next) => {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+// error handler
+app.use(function (err, req, res, next) {
+  var msg = err.stack || err.toString();
+  console.error(msg);
+  if (res.statusCode < 400) res.statusCode = 500;
+  if (err.status) res.statusCode = err.status;
+  res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Content-Length', Buffer.byteLength(msg));
+  if ('HEAD' == req.method) return res.end();
+  res.end(msg);
 });
 
 if (process.env.NODE_ENV === 'development') {

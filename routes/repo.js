@@ -1,15 +1,12 @@
 
-import {Router} from 'express';
 import GitHubApi from 'github';
 import marked from 'marked';
-
-const router = Router();
 
 const github = new GitHubApi({
   version: '3.0.0',
 });
 
-router.get('/:user/:repo', (req, res, next) => {
+export default (req, res, next) => {
   const {user, repo} = req.params;
   const path = 'README.md';
   const ref = 'usability';
@@ -19,23 +16,24 @@ router.get('/:user/:repo', (req, res, next) => {
     const content = marked(buf.toString('ascii'));
 
     res.render('repo', {
-      user, repo, content
+      user, repo, content,
+      title: `usability-shield for ${user}/${repo}`
     });
   }
+
+  // Check if the repo exists
 
   const getContent = (params, clb) => {
     github.repos.getContent(params, (err, data) => {
       if (err) console.log(err);
       if (data) render(data);
-      else clb();
+      else clb(err);
     });
   }
 
-  getContent({user, repo, path}, () => {
-    getContent({user, repo, path, ref}, () => {
+  getContent({user, repo, path}, (err) => {
+    getContent({user, repo, path, ref}, (err) => {
       res.redirect('/');
     });
   });
-});
-
-export default router;
+};
