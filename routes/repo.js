@@ -8,32 +8,42 @@ const github = new GitHubApi({
 
 export default (req, res, next) => {
   const {user, repo} = req.params;
-  const path = 'README.md';
+  const path = 'usability.md';
   const ref = 'usability';
 
-  const render = (data) => {
+  const renderRepoView = (data) => {
     const buf = new Buffer(data.content, 'base64');
     const content = marked(buf.toString('ascii'));
+    const title = `usability-shield for ${user}/${repo}`;
 
     res.render('repo', {
-      user, repo, content,
-      title: `usability-shield for ${user}/${repo}`
+      user, repo, content, title
     });
-  }
+  };
 
-  // Check if the repo exists
+  const renderNotFoundView = (err) => {
+    const msg = JSON.parse(err.message).message;
+    return res.render('not-found', {
+      user, repo, path, ref, msg
+    });
+  };
 
-  const getContent = (params, clb) => {
+  const getMarkdown = (params, clb) => {
     github.repos.getContent(params, (err, data) => {
       if (err) console.log(err);
-      if (data) render(data);
+      if (data) renderRepoView(data);
       else clb(err);
     });
-  }
+  };
 
-  getContent({user, repo, path}, (err) => {
-    getContent({user, repo, path, ref}, (err) => {
-      res.redirect('/');
+  github.repos.get({user, repo}, (err, data) => {
+    if (err && err.code === 404) renderNotFoundView(err);
+    // if (data) console.log(data);
+    getMarkdown({user, repo, path}, (err) => {
+      getMarkdown({user, repo, path, ref}, (err) => {
+        if (err && err.code === 404) renderNotFoundView(err);
+        // res.redirect('/');
+      });
     });
   });
 };

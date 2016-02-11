@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  if msg === 'Not Found'
+    h2 No #{user}/#{repo} repo found
+
+  if msg === 'No commit found for the ref ' + ref
+    h2 No #{path} found in repo #{user}/#{repo}
+
+  ul
+    li Create a #{path} here
+    li File named #{path}?
+    li Is it in root of repo (master or ux branch)
